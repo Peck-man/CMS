@@ -14,7 +14,10 @@ public class Person {
     private String password;
 
     public Person(String firstName, String lastName, String userName, String password) {
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
     }
 
     public Person() {
@@ -51,5 +54,16 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
