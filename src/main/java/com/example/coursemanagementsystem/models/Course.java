@@ -1,6 +1,7 @@
 package com.example.coursemanagementsystem.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Course {
@@ -8,12 +9,12 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String courseName;
-    @ManyToOne
-    Student student;
+    @ManyToMany
+    List<Student> student;
     @ManyToOne
     Teacher teacher;
 
-    public Course(String courseName, Student student, Teacher teacher) {
+    public Course(String courseName, List<Student> student, Teacher teacher) {
         this.courseName = courseName;
         this.student = student;
         this.teacher = teacher;
@@ -43,11 +44,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public Student getStudent() {
+    public List<Student> getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(List<Student> student) {
         this.student = student;
     }
 

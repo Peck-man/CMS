@@ -11,8 +11,14 @@ public class Teacher extends Person{
     @OneToMany
     private List<Course> courses;
 
+    public Teacher(String firstName, String lastName, String userName, String password, List<Course> courses) {
+        super(firstName, lastName, userName, password);
+        this.courses = courses;
+    }
+
     public Teacher(String firstName, String lastName, String userName, String password) {
         super(firstName, lastName, userName, password);
+
     }
 
     public Teacher() {

@@ -9,8 +9,15 @@ public class Student extends Person{
 
     @ManyToMany
     private List<Course> courses;
+
+    public Student(String firstName, String lastName, String userName, String password, List<Course> courses) {
+        super(firstName, lastName, userName, password);
+        this.courses = courses;
+    }
+
     public Student(String firstName, String lastName, String userName, String password) {
         super(firstName, lastName, userName, password);
+
     }
 
     public Student() {
