@@ -8,6 +8,8 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(insertable = false, updatable = false)
+    private String dtype;
     private String firstName;
     private String lastName;
     private String userName;
