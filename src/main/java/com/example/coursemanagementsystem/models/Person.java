@@ -58,6 +58,14 @@ public class Person {
         this.password = password;
     }
 
+    public String getDtype() {
+        return dtype;
+    }
+
+    public void setDtype(String dtype) {
+        this.dtype = dtype;
+    }
+
     @Override
     public String toString() {
         return "Person{" +

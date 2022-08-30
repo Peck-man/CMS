@@ -53,4 +53,5 @@ public class Administrator extends Person{
     public void setPassword(String password) {
         super.setPassword(password);
     }
+
 }

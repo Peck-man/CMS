@@ -24,8 +24,5 @@ public class CourseManagementSystemApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         personRepository.save(new Student("Borec", "Jsem", "jsemBorec", "master"));
         personRepository.save(new Teacher("Učitel", "Jsem", "jsemUčitel", "master"));
-        System.out.println(personRepository.findById(1));
-        System.out.println(personRepository.findById(2));
-        System.out.println(personRepository.findAllByDtype("Teacher"));
     }
 }

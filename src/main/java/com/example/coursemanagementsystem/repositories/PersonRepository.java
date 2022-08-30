@@ -8,5 +8,8 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
     Person findById(int id);
+    Person findByUserName(String username);
     List<Teacher> findAllByDtype(String name);
+
+
 }
