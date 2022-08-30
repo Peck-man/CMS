@@ -1,11 +1,22 @@
 package com.example.coursemanagementsystem.models;
 
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
+
+@Entity
 public class Teacher extends Person{
 
+    @OneToMany
+    private List<Course> courses;
 
     public Teacher(String firstName, String lastName, String userName, String password) {
         super(firstName, lastName, userName, password);
+    }
+
+    public Teacher() {
+
     }
 
     @Override
@@ -26,6 +37,14 @@ public class Teacher extends Person{
     @Override
     public void setLastName(String lastName) {
         super.setLastName(lastName);
+    }
+
+    public List<Course> getCourse() {
+        return courses;
+    }
+
+    public void setCourse(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override

@@ -1,11 +1,17 @@
 package com.example.coursemanagementsystem.models;
 
+import javax.persistence.Entity;
 
+@Entity
 public class Administrator extends Person{
 
 
     public Administrator(String firstName, String lastName, String userName, String password) {
         super(firstName, lastName, userName, password);
+    }
+
+    public Administrator() {
+
     }
 
     @Override

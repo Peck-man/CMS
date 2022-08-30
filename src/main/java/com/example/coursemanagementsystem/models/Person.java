@@ -1,18 +1,17 @@
 package com.example.coursemanagementsystem.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    public String firstName;
-    public String lastName;
-    public String userName;
-    public String password;
+    private String firstName;
+    private String lastName;
+    private String userName;
+    private String password;
 
     public Person(String firstName, String lastName, String userName, String password) {
 
