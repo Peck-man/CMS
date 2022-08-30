@@ -1,10 +1,10 @@
 package com.example.coursemanagementsystem.models;
 
 
-public class Student extends Person{
+public class Teacher extends Person{
 
 
-    public Student(String name, String password){
+    public Teacher(String name, String password){
         super(name, password);
     }
 
