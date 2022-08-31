@@ -1,5 +1,6 @@
 package com.example.coursemanagementsystem.controllers;
 
+import com.example.coursemanagementsystem.models.Course;
 import com.example.coursemanagementsystem.models.Student;
 import com.example.coursemanagementsystem.models.Teacher;
 import com.example.coursemanagementsystem.repositories.PersonRepository;
@@ -7,6 +8,7 @@ import com.example.coursemanagementsystem.services.StudentService;
 import com.example.coursemanagementsystem.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,6 +57,24 @@ public class CreateController {
             return "redirect:/administrator/login";
         } catch (Exception e){
             return "teacherFormUnsuccessful";
+        }
+
+    }
+    @GetMapping("/create-course")
+    public String fillCourseForm(Model model){
+         model.addAttribute("teachers", personRepository.findAllByDtype("Teacher"));
+
+        model.addAttribute("students", personRepository.findAllByDtype("Student"));
+        return "courseForm";
+    }
+
+    @PostMapping("/create-course")
+    public String createCourse(Course course){
+        try {
+
+            return "redirect:/administrator/login";
+        } catch (Exception e){
+            return "courseFormUnsuccessful";
         }
 
     }
