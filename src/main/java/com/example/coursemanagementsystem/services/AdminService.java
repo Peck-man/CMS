@@ -14,7 +14,6 @@ public class AdminService {
 
     public Person adminValidation(String username, String password){
         Person admin = personRepository.findByUserName(username);
-        System.out.println(admin);
         if (admin == null || !Objects.equals(admin.getDtype(), "Administrator") || !Objects.equals(admin.getPassword(), password)) {
             return null;
         }
