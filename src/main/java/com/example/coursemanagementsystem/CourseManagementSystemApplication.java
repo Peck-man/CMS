@@ -24,6 +24,8 @@ public class CourseManagementSystemApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         personRepository.save(new Student("Borec", "Jsem", "jsemBorec", "master"));
+        personRepository.save(new Student("Husty", "Jsem", "asdf", "master"));
+        personRepository.save(new Student("Super", "Jsem", "qwer", "master"));
         personRepository.save(new Teacher("Ucitel", "Jsem", "jsemUcitel", "master"));
         personRepository.save(new Administrator("Administrator", "Jsem", "admin", "master"));
     }

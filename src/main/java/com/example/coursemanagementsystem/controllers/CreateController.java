@@ -1,9 +1,12 @@
 package com.example.coursemanagementsystem.controllers;
 
 import com.example.coursemanagementsystem.models.Course;
+import com.example.coursemanagementsystem.models.Person;
 import com.example.coursemanagementsystem.models.Student;
 import com.example.coursemanagementsystem.models.Teacher;
+import com.example.coursemanagementsystem.repositories.CourseRepository;
 import com.example.coursemanagementsystem.repositories.PersonRepository;
+import com.example.coursemanagementsystem.services.CourseService;
 import com.example.coursemanagementsystem.services.StudentService;
 import com.example.coursemanagementsystem.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +17,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/administrator")
 public class CreateController {
 
-    @Autowired
     StudentService studentService;
-    @Autowired
     TeacherService teacherService;
-    @Autowired
     PersonRepository personRepository;
+    CourseRepository courseRepository;
+    CourseService courseService;
 
+    public CreateController(StudentService studentService, TeacherService teacherService, PersonRepository personRepository, CourseRepository courseRepository, CourseService courseService) {
+        this.studentService = studentService;
+        this.teacherService = teacherService;
+        this.personRepository = personRepository;
+        this.courseRepository = courseRepository;
+        this.courseService = courseService;
+    }
 
     @GetMapping("/create-student")
     public String fillStudentForm(){
@@ -69,13 +80,17 @@ public class CreateController {
     }
 
     @PostMapping("/create-course")
-    public String createCourse(Course course){
+    public String createCourse(@RequestParam String courseName,
+                               @RequestParam String teacherUserName,
+                               @RequestParam List<String> students){
+        Course course;
         try {
-
-            return "redirect:/administrator/login";
-        } catch (Exception e){
+            course = courseService.createCourse(courseName,teacherUserName,students);
+        } catch (IllegalArgumentException e){
             return "courseFormUnsuccessful";
         }
+        courseRepository.save(course);
+        return "redirect:/administrator/login";
 
     }
 

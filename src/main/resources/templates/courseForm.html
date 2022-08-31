@@ -10,9 +10,8 @@
     <input type="text" name="courseName" id="courseName">
     <br>
     <p>Select teachers: </p>
-    <select name="teachers" id="teacher" th:each="teacher, iter: ${teachers}" >
-        <option th:value="${teacher.firstName}" th:text="${teacher.firstName} + ' ' +  ${teacher.lastName}"></option>
-
+    <select name="teacherUserName"  >
+        <option th:each="teacher, iter: ${teachers}" th:value="${teacher.userName}" th:text="${teacher.firstName} + ' ' +  ${teacher.lastName}"></option>
     </select>
     <br>
     <p>Select students: </p>
@@ -20,9 +19,9 @@
     <input type="checkbox" name="students" th:id="${student}"
            th:each="student : ${students}"
            th:text="${student.firstName} + ' ' +  ${student.lastName}"
+           th:value="${student.userName}"
     >
-
-
+<input type="submit" value="Create">
 </form>
 </body>
 </html>
