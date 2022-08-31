@@ -1,8 +1,11 @@
 package com.example.coursemanagementsystem.controllers;
 
+import com.example.coursemanagementsystem.models.Person;
+import com.example.coursemanagementsystem.models.PersonDTO;
 import com.example.coursemanagementsystem.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,9 +24,11 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public String loggedIn(@RequestBody String username, String password){
+    public String loggedIn(PersonDTO personDTO, Model model){
         try {
-            adminService.adminValidation(username,password);
+            Person person = adminService.adminValidation(personDTO.getUsername(), personDTO.getPassword());
+            model.addAttribute("firstName", person.getFirstName());
+            model.addAttribute("lastName", person.getLastName());
                 return "adminLoggedIn";
         } catch (NullPointerException e){
             return "adminLoginUnsuccessful";

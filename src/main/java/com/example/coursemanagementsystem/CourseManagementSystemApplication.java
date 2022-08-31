@@ -1,5 +1,6 @@
 package com.example.coursemanagementsystem;
 
+import com.example.coursemanagementsystem.models.Administrator;
 import com.example.coursemanagementsystem.models.Student;
 import com.example.coursemanagementsystem.models.Teacher;
 import com.example.coursemanagementsystem.repositories.PersonRepository;
@@ -23,6 +24,7 @@ public class CourseManagementSystemApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         personRepository.save(new Student("Borec", "Jsem", "jsemBorec", "master"));
-        personRepository.save(new Teacher("Učitel", "Jsem", "jsemUčitel", "master"));
+        personRepository.save(new Teacher("Ucitel", "Jsem", "jsemUcitel", "master"));
+        personRepository.save(new Administrator("Administrator", "Jsem", "admin", "master"));
     }
 }
