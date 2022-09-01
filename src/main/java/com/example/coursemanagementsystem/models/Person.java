@@ -66,6 +66,14 @@ public class Person {
         this.dtype = dtype;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
