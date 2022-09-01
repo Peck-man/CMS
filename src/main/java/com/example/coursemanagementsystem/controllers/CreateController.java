@@ -82,6 +82,7 @@ public class CreateController {
         } catch (IllegalArgumentException e){
             return "redirect:/administrator/create-course";
         }
+        System.out.println(course);
         courseRepository.save(course);
         return "redirect:/administrator/login";
 

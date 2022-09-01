@@ -1,5 +1,7 @@
 package com.example.coursemanagementsystem.controllers;
 
+import com.example.coursemanagementsystem.models.Person;
+import com.example.coursemanagementsystem.models.Student;
 import com.example.coursemanagementsystem.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class StudentController {
             model.addAttribute("error", "Something is empty");
             return "studentLogin";
         } catch (NullPointerException e) {
-            model.addAttribute("error", "We didnt find him");
+            model.addAttribute("error", "We didnt find you");
             return "studentLogin";
         }
 
@@ -47,9 +49,21 @@ public class StudentController {
         }
     }
 
-        @GetMapping("/student/{id}")
-        public void showMainMenu (@PathVariable String id){
+        @GetMapping("/{id}")
+        public String showMainMenu (@PathVariable int id, Model model){
+        Person student = studentService.findById(id);
+            model.addAttribute("firstName", student.getFirstName());
+            model.addAttribute("lastName", student.getLastName());
+            model.addAttribute("id", id);
+            return "StudentLoggedIn";
+        }
 
+        @GetMapping("/{id}/courses")
+        public String showCourses(@PathVariable int id, Model model){
+            Student student = (Student) studentService.findById(id);
+            System.out.println(student.getCourses());
+            model.addAttribute("courseName", student.getCourses());
+            return "showCourses";
         }
     }
 

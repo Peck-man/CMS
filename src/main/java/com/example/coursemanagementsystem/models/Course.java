@@ -1,7 +1,6 @@
 package com.example.coursemanagementsystem.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity

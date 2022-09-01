@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Courses currently registered in: </p>
+<select name="courseNames" >
+    <option th:each="courseName, iter: ${courseNames}" th:value="${courseName.courseName}" th:text="${courseName.courseName}"></option>
+</select>
+</body>
+</html>

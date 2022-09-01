@@ -30,7 +30,6 @@ public class StudentService {
             throw new IllegalArgumentException();
         }
         Person student = personRepository.findByUserName(username);
-        System.out.println(student);
         if (Objects.isNull(student)){
             throw new NullPointerException();
         }
@@ -43,5 +42,9 @@ public class StudentService {
             return new ResponseEntity<>("Wrong password", HttpStatus.UNAUTHORIZED);
         }
         return ResponseEntity.ok().body(student.getId());
+    }
+
+    public Person findById(int id){
+        return personRepository.findById(id);
     }
 }

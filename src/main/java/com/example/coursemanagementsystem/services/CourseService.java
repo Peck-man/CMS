@@ -33,6 +33,8 @@ public class CourseService {
             students.forEach(s -> {studentList.add((Student) personRepository.findByUserName(s));});
         }
 
-        return new Course(courseName,studentList, teacher);
+        Course newCourse = new Course(courseName,studentList, teacher);
+        studentList.forEach(student -> student.getCourses().add(newCourse));
+        return newCourse;
     }
 }
