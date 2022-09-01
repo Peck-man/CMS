@@ -1,6 +1,7 @@
 package com.example.coursemanagementsystem.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -8,6 +9,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String courseName;
     @ManyToMany
     List<Student> student;

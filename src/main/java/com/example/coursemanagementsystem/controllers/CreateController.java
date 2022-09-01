@@ -1,9 +1,6 @@
 package com.example.coursemanagementsystem.controllers;
 
-import com.example.coursemanagementsystem.models.Course;
-import com.example.coursemanagementsystem.models.Person;
-import com.example.coursemanagementsystem.models.Student;
-import com.example.coursemanagementsystem.models.Teacher;
+import com.example.coursemanagementsystem.models.*;
 import com.example.coursemanagementsystem.repositories.CourseRepository;
 import com.example.coursemanagementsystem.repositories.PersonRepository;
 import com.example.coursemanagementsystem.services.CourseService;
@@ -12,11 +9,10 @@ import com.example.coursemanagementsystem.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -73,21 +69,18 @@ public class CreateController {
     }
     @GetMapping("/create-course")
     public String fillCourseForm(Model model){
-         model.addAttribute("teachers", personRepository.findAllByDtype("Teacher"));
-
+        model.addAttribute("teachers", personRepository.findAllByDtype("Teacher"));
         model.addAttribute("students", personRepository.findAllByDtype("Student"));
         return "courseForm";
     }
 
     @PostMapping("/create-course")
-    public String createCourse(@RequestParam String courseName,
-                               @RequestParam String teacherUserName,
-                               @RequestParam List<String> students){
+    public String createCourse(CourseDTO courseDTO){
         Course course;
         try {
-            course = courseService.createCourse(courseName,teacherUserName,students);
+            course = courseService.createCourse(courseDTO.getCourseName(), courseDTO.getTeacherUserName(), courseDTO.getStudents());
         } catch (IllegalArgumentException e){
-            return "courseFormUnsuccessful";
+            return "redirect:/administrator/create-course";
         }
         courseRepository.save(course);
         return "redirect:/administrator/login";

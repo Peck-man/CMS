@@ -28,10 +28,10 @@ public class CourseService {
             throw new IllegalArgumentException();
         }
         Teacher teacher = (Teacher) personRepository.findByUserName(teacherName);
-
-                List<Student> studentList = new ArrayList<>();
-                        students.forEach(s -> {studentList.add((Student) personRepository.findByUserName(s));});
-
+        List<Student> studentList = new ArrayList<>();
+        if (students != null) {
+            students.forEach(s -> {studentList.add((Student) personRepository.findByUserName(s));});
+        }
 
         return new Course(courseName,studentList, teacher);
     }
